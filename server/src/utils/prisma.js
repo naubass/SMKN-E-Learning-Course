@@ -1,0 +1,16 @@
+import 'dotenv/config';
+import { PrismaClient } from '../generated/prisma/client.ts';
+import { PrismaMariaDb } from '@prisma/adapter-mariadb';
+
+const adapter = new PrismaMariaDb({
+  host: 'localhost',
+  port: 3306,
+  user: 'root',
+  password: '',
+  database: 'db_smkn_satu_kabta_learning',
+  connectionLimit: 5,
+});
+
+const prisma = new PrismaClient({ adapter });
+
+export default prisma;

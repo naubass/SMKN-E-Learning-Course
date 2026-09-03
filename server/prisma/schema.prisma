@@ -1,0 +1,71 @@
+datasource db {
+  provider = "mysql"
+}
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+model User {
+  id           String         @id @default(uuid())
+  name         String
+  email        String         @unique
+  password     String
+  role         Role           @default(STUDENT)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  courses      Course[]       @relation("InstructorCourses")
+  progress     UserProgress[]
+}
+
+enum Role {
+  STUDENT
+  INSTRUCTOR
+  ADMIN
+}
+
+model Course {
+  id           String      @id @default(uuid())
+  title        String
+  description  String
+  category     String
+  thumbnail    String?
+  instructorId String
+  instructor   User        @relation("InstructorCourses", fields: [instructorId], references: [id], onDelete: Cascade)
+  chapters     Chapter[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
+model Chapter {
+  id          String   @id @default(uuid())
+  title       String
+  orderIndex  Int
+  courseId    String
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  lessons     Lesson[]
+}
+
+model Lesson {
+  id           String         @id @default(uuid())
+  title        String
+  content      String         @db.Text // Isi materi (teks/markdown/gambar)
+  videoUrl     String?
+  orderIndex   Int
+  chapterId    String
+  chapter      Chapter        @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  userProgress UserProgress[]
+}
+
+model UserProgress {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId    String
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  isCompleted Boolean  @default(false)
+  updatedAt   DateTime @updatedAt
+
+  @@unique([userId, lessonId])
+}
