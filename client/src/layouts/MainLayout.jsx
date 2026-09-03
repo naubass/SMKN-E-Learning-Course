@@ -3,21 +3,21 @@ import { Outlet, Link } from 'react-router-dom';
 function MainLayout() {
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="border-b border-gray-200">
+      <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
         <nav className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="font-bold text-xl text-blue-600">
+          <Link to="/" className="font-bold text-xl text-gray-900">
             SMK Learning
           </Link>
-          <div className="flex gap-4 items-center">
-            <Link to="/courses" className="text-gray-700 hover:text-blue-600">
+          <div className="flex gap-6 items-center">
+            <Link to="/courses" className="text-sm text-gray-700 hover:text-[#F0653A]">
               Courses
             </Link>
-            <Link to="/login" className="text-gray-700 hover:text-blue-600">
+            <Link to="/login" className="text-sm text-gray-700 hover:text-[#F0653A]">
               Login
             </Link>
             <Link
               to="/register"
-              className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              className="rounded-lg bg-[#F0653A] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#d8552c]"
             >
               Daftar
             </Link>
