@@ -27,19 +27,27 @@ const features = [
 function Home() {
   return (
     <div className="bg-white">
-      {/* Hero */}
+      {/* Hero dengan Background Image & Overlay Transparan */}
       <section className="relative overflow-hidden bg-[#0B1220]">
+        {/* Background Image dengan efek cover dan posisi center */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-25"
+          style={{ backgroundImage: `url('/hero.webp')` }}
+        />
+        {/* Gradient Overlay agar teks tetap sangat terbaca jelas */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1220]/30 via-[#0B1220]/10 to-transparent" />
+
         <div className="pointer-events-none absolute -right-32 top-1/2 h-[560px] w-[560px] -translate-y-1/2 rounded-full bg-[#F0653A]/10 blur-3xl" />
 
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:py-28 lg:px-8">
+        <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-16 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center lg:py-28 lg:px-8">
           {/* Copy */}
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-orange-300">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-blue-300">
               Platform Belajar SMK
             </span>
 
             <h1 className="mt-6 text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
-              Asah keahlian SMK-mu, kapan saja, di mana saja
+              Platform Pembelajaran Resmi SMKN 1 Kabupaten Tangerang
             </h1>
 
             <p className="mt-5 max-w-lg text-lg text-slate-300">
@@ -51,7 +59,7 @@ function Home() {
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 to="/courses"
-                className="rounded-lg bg-[#F0653A] px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-900/30 transition hover:bg-[#d8552c]"
+                className="rounded-lg bg-[#1533b9] px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-900/30 transition hover:bg-[#2892d8]"
               >
                 Mulai Belajar
               </Link>
@@ -81,19 +89,19 @@ function Home() {
 
           {/* Layered course-card mockup */}
           <div className="relative mx-auto hidden w-full max-w-md lg:block">
-            <div className="absolute -left-6 top-8 w-full -rotate-3 rounded-2xl border border-white/10 bg-[#131B2E] p-5 shadow-2xl">
+            <div className="absolute -left-6 top-8 w-full -rotate-3 rounded-2xl border border-white/10 bg-[#131B2E]/90 backdrop-blur-md p-5 shadow-2xl">
               <div className="h-2 w-16 rounded-full bg-white/10" />
               <div className="mt-4 h-24 rounded-lg bg-gradient-to-br from-[#F0653A]/25 to-transparent" />
               <div className="mt-4 h-2 w-3/4 rounded-full bg-white/10" />
               <div className="mt-2 h-2 w-1/2 rounded-full bg-white/10" />
             </div>
 
-            <div className="relative rotate-2 rounded-2xl border border-white/10 bg-[#0F172A] p-5 shadow-2xl">
+            <div className="relative rotate-2 rounded-2xl border border-white/10 bg-[#0F172A]/90 backdrop-blur-md p-5 shadow-2xl">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-medium text-orange-300">
+                <span className="text-xs font-medium text-blue-300">
                   Rekayasa Perangkat Lunak
                 </span>
-                <span className="rounded-full bg-[#F0653A]/20 px-2 py-0.5 text-xs text-orange-300">
+                <span className="rounded-full bg-[#F0653A]/20 px-2 py-0.5 text-xs text-blue-300">
                   Baru
                 </span>
               </div>
@@ -109,11 +117,11 @@ function Home() {
                     12 modul, 4 instruktur
                   </p>
                 </div>
-                <div className="h-8 w-8 rounded-full bg-[#F0653A]" />
+                <div className="h-8 w-8 rounded-full bg-[#3ac6f0]" />
               </div>
 
               <div className="mt-4 h-1.5 w-full rounded-full bg-white/10">
-                <div className="h-1.5 w-2/3 rounded-full bg-[#F0653A]" />
+                <div className="h-1.5 w-2/3 rounded-full bg-[#3ac6f0]" />
               </div>
             </div>
           </div>
@@ -136,7 +144,7 @@ function Home() {
           <div className="divide-y divide-gray-200 border-t border-gray-200">
             {features.map((f) => (
               <div key={f.title} className="flex gap-5 py-6">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#F0653A]/10 text-[#F0653A]">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#F0653A]/10 text-[#3ab6f0]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -172,7 +180,7 @@ function Home() {
           </p>
           <Link
             to="/register"
-            className="mt-8 inline-block rounded-lg bg-[#F0653A] px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-900/30 transition hover:bg-[#d8552c]"
+            className="mt-8 inline-block rounded-lg bg-[#1763aa] px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-900/30 transition hover:bg-[#28b5d8]"
           >
             Daftar Sekarang
           </Link>

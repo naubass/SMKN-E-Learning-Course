@@ -1,37 +1,58 @@
-import { Outlet, Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 function MainLayout() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-        <nav className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link to="/" className="font-bold text-xl text-gray-900">
-            SMK Learning
+    <div className="min-h-screen flex flex-col bg-white">
+      {/* Navbar Resmi */}
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+          
+          {/* Logo & Nama Sekolah */}
+          <Link to="/" className="flex items-center gap-3 group">
+            <img 
+              src="/logo-sekolah.png" 
+              alt="Logo SMKN 1 Kabupaten Tangerang" 
+              className="h-10 w-10 object-contain"
+            />
+            <div className="flex flex-col">
+              <span className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition">
+                SMKN 1 Kabupaten Tangerang
+              </span>
+              <span className="text-xs text-slate-500 font-medium">
+                Sekolah Berbasis Taruna
+              </span>
+            </div>
           </Link>
-          <div className="flex gap-6 items-center">
-            <Link to="/courses" className="text-sm text-gray-700 hover:text-[#F0653A]">
+
+          {/* Menu Navigasi & Tombol Aksi */}
+          <nav className="flex items-center gap-6">
+            <Link 
+              to="/courses" 
+              className="text-sm font-medium text-slate-700 hover:text-blue-600 transition"
+            >
               Courses
             </Link>
-            <Link to="/login" className="text-sm text-gray-700 hover:text-[#F0653A]">
+            <Link 
+              to="/login" 
+              className="text-sm font-medium text-slate-700 hover:text-blue-600 transition"
+            >
               Login
             </Link>
             <Link
               to="/register"
-              className="rounded-lg bg-[#F0653A] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#d8552c]"
+              className="rounded-lg bg-sky-700 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-sky-600 transition"
             >
               Daftar
             </Link>
-          </div>
-        </nav>
+          </nav>
+
+        </div>
       </header>
 
-      <main className="flex-1">
+      {/* Konten Halaman */}
+      <main className="flex-grow">
         <Outlet />
       </main>
-
-      <footer className="border-t border-gray-200 py-6 text-center text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} SMK Learning Platform
-      </footer>
     </div>
   );
 }
