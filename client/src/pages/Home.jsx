@@ -157,7 +157,7 @@ function Home() {
 
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                to="/courses"
+                to="/login"
                 className="rounded-lg bg-[#1533b9] px-8 py-3 text-sm font-semibold text-white shadow-lg shadow-orange-900/30 transition hover:bg-[#2892d8]"
               >
                 Mulai Belajar

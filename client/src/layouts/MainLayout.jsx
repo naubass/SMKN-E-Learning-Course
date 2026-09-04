@@ -18,14 +18,14 @@ function MainLayout() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-6 lg:px-8">
 
           {/* Logo & Nama Sekolah */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link to="/dashboard" className="flex items-center gap-3 group">
             <img
               src="/logo-sekolah.png"
               alt="Logo SMKN 1 Kabupaten Tangerang"
               className="h-10 w-10 object-contain"
             />
             <div className="flex flex-col">
-              <span className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition">
+              <span className="text-base font-bold text-slate-90">
                 SMKN 1 Kabupaten Tangerang
               </span>
               <span className="text-xs text-slate-500 font-medium">
