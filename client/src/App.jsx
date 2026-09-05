@@ -22,9 +22,17 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/courses" element={<Courses />} />
         <Route path="/courses/:courseId" element={<CourseDetail />} />
-        <Route path="/lessons/:lessonId" element={<LessonPage />} />
 
-        {/* Halaman wajib login */}
+        {/* Wajib login untuk akses materi lesson */}
+        <Route
+          path="/lessons/:lessonId"
+          element={
+            <ProtectedRoute>
+              <LessonPage />
+            </ProtectedRoute>
+          }
+        />
+
         <Route
           path="/dashboard"
           element={
