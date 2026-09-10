@@ -55,7 +55,12 @@ export const ModelName = {
   Course: 'Course',
   Chapter: 'Chapter',
   Lesson: 'Lesson',
-  UserProgress: 'UserProgress'
+  UserProgress: 'UserProgress',
+  Quiz: 'Quiz',
+  QuizQuestion: 'QuizQuestion',
+  QuizResult: 'QuizResult',
+  Submission: 'Submission',
+  SubmissionEntry: 'SubmissionEntry'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -90,6 +95,7 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const CourseScalarFieldEnum = {
   id: 'id',
   title: 'title',
+  bio: 'bio',
   description: 'description',
   category: 'category',
   thumbnail: 'thumbnail',
@@ -134,6 +140,68 @@ export const UserProgressScalarFieldEnum = {
 export type UserProgressScalarFieldEnum = (typeof UserProgressScalarFieldEnum)[keyof typeof UserProgressScalarFieldEnum]
 
 
+export const QuizScalarFieldEnum = {
+  id: 'id',
+  lessonId: 'lessonId',
+  title: 'title',
+  createdAt: 'createdAt'
+} as const
+
+export type QuizScalarFieldEnum = (typeof QuizScalarFieldEnum)[keyof typeof QuizScalarFieldEnum]
+
+
+export const QuizQuestionScalarFieldEnum = {
+  id: 'id',
+  quizId: 'quizId',
+  question: 'question',
+  optionA: 'optionA',
+  optionB: 'optionB',
+  optionC: 'optionC',
+  optionD: 'optionD',
+  correctAnswer: 'correctAnswer',
+  orderIndex: 'orderIndex'
+} as const
+
+export type QuizQuestionScalarFieldEnum = (typeof QuizQuestionScalarFieldEnum)[keyof typeof QuizQuestionScalarFieldEnum]
+
+
+export const QuizResultScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  quizId: 'quizId',
+  score: 'score',
+  isPassed: 'isPassed',
+  completedAt: 'completedAt'
+} as const
+
+export type QuizResultScalarFieldEnum = (typeof QuizResultScalarFieldEnum)[keyof typeof QuizResultScalarFieldEnum]
+
+
+export const SubmissionScalarFieldEnum = {
+  id: 'id',
+  courseId: 'courseId',
+  title: 'title',
+  instructions: 'instructions',
+  createdAt: 'createdAt'
+} as const
+
+export type SubmissionScalarFieldEnum = (typeof SubmissionScalarFieldEnum)[keyof typeof SubmissionScalarFieldEnum]
+
+
+export const SubmissionEntryScalarFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  userId: 'userId',
+  content: 'content',
+  status: 'status',
+  feedback: 'feedback',
+  submittedAt: 'submittedAt',
+  reviewedAt: 'reviewedAt'
+} as const
+
+export type SubmissionEntryScalarFieldEnum = (typeof SubmissionEntryScalarFieldEnum)[keyof typeof SubmissionEntryScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -163,6 +231,7 @@ export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 export const CourseOrderByRelevanceFieldEnum = {
   id: 'id',
   title: 'title',
+  bio: 'bio',
   description: 'description',
   category: 'category',
   thumbnail: 'thumbnail',
@@ -199,4 +268,56 @@ export const UserProgressOrderByRelevanceFieldEnum = {
 } as const
 
 export type UserProgressOrderByRelevanceFieldEnum = (typeof UserProgressOrderByRelevanceFieldEnum)[keyof typeof UserProgressOrderByRelevanceFieldEnum]
+
+
+export const QuizOrderByRelevanceFieldEnum = {
+  id: 'id',
+  lessonId: 'lessonId',
+  title: 'title'
+} as const
+
+export type QuizOrderByRelevanceFieldEnum = (typeof QuizOrderByRelevanceFieldEnum)[keyof typeof QuizOrderByRelevanceFieldEnum]
+
+
+export const QuizQuestionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  quizId: 'quizId',
+  question: 'question',
+  optionA: 'optionA',
+  optionB: 'optionB',
+  optionC: 'optionC',
+  optionD: 'optionD'
+} as const
+
+export type QuizQuestionOrderByRelevanceFieldEnum = (typeof QuizQuestionOrderByRelevanceFieldEnum)[keyof typeof QuizQuestionOrderByRelevanceFieldEnum]
+
+
+export const QuizResultOrderByRelevanceFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  quizId: 'quizId'
+} as const
+
+export type QuizResultOrderByRelevanceFieldEnum = (typeof QuizResultOrderByRelevanceFieldEnum)[keyof typeof QuizResultOrderByRelevanceFieldEnum]
+
+
+export const SubmissionOrderByRelevanceFieldEnum = {
+  id: 'id',
+  courseId: 'courseId',
+  title: 'title',
+  instructions: 'instructions'
+} as const
+
+export type SubmissionOrderByRelevanceFieldEnum = (typeof SubmissionOrderByRelevanceFieldEnum)[keyof typeof SubmissionOrderByRelevanceFieldEnum]
+
+
+export const SubmissionEntryOrderByRelevanceFieldEnum = {
+  id: 'id',
+  submissionId: 'submissionId',
+  userId: 'userId',
+  content: 'content',
+  feedback: 'feedback'
+} as const
+
+export type SubmissionEntryOrderByRelevanceFieldEnum = (typeof SubmissionEntryOrderByRelevanceFieldEnum)[keyof typeof SubmissionEntryOrderByRelevanceFieldEnum]
 

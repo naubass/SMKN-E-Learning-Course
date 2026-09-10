@@ -64,3 +64,28 @@ export type Lesson = Prisma.LessonModel
  * 
  */
 export type UserProgress = Prisma.UserProgressModel
+/**
+ * Model Quiz
+ * 
+ */
+export type Quiz = Prisma.QuizModel
+/**
+ * Model QuizQuestion
+ * 
+ */
+export type QuizQuestion = Prisma.QuizQuestionModel
+/**
+ * Model QuizResult
+ * 
+ */
+export type QuizResult = Prisma.QuizResultModel
+/**
+ * Model Submission
+ * 
+ */
+export type Submission = Prisma.SubmissionModel
+/**
+ * Model SubmissionEntry
+ * 
+ */
+export type SubmissionEntry = Prisma.SubmissionEntryModel

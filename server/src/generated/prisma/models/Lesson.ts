@@ -226,6 +226,7 @@ export type LessonWhereInput = {
   chapterId?: Prisma.StringFilter<"Lesson"> | string
   chapter?: Prisma.XOR<Prisma.ChapterScalarRelationFilter, Prisma.ChapterWhereInput>
   userProgress?: Prisma.UserProgressListRelationFilter
+  quiz?: Prisma.XOR<Prisma.QuizNullableScalarRelationFilter, Prisma.QuizWhereInput> | null
 }
 
 export type LessonOrderByWithRelationInput = {
@@ -237,6 +238,7 @@ export type LessonOrderByWithRelationInput = {
   chapterId?: Prisma.SortOrder
   chapter?: Prisma.ChapterOrderByWithRelationInput
   userProgress?: Prisma.UserProgressOrderByRelationAggregateInput
+  quiz?: Prisma.QuizOrderByWithRelationInput
   _relevance?: Prisma.LessonOrderByRelevanceInput
 }
 
@@ -252,6 +254,7 @@ export type LessonWhereUniqueInput = Prisma.AtLeast<{
   chapterId?: Prisma.StringFilter<"Lesson"> | string
   chapter?: Prisma.XOR<Prisma.ChapterScalarRelationFilter, Prisma.ChapterWhereInput>
   userProgress?: Prisma.UserProgressListRelationFilter
+  quiz?: Prisma.XOR<Prisma.QuizNullableScalarRelationFilter, Prisma.QuizWhereInput> | null
 }, "id">
 
 export type LessonOrderByWithAggregationInput = {
@@ -288,6 +291,7 @@ export type LessonCreateInput = {
   orderIndex: number
   chapter: Prisma.ChapterCreateNestedOneWithoutLessonsInput
   userProgress?: Prisma.UserProgressCreateNestedManyWithoutLessonInput
+  quiz?: Prisma.QuizCreateNestedOneWithoutLessonInput
 }
 
 export type LessonUncheckedCreateInput = {
@@ -298,6 +302,7 @@ export type LessonUncheckedCreateInput = {
   orderIndex: number
   chapterId: string
   userProgress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutLessonInput
+  quiz?: Prisma.QuizUncheckedCreateNestedOneWithoutLessonInput
 }
 
 export type LessonUpdateInput = {
@@ -308,6 +313,7 @@ export type LessonUpdateInput = {
   orderIndex?: Prisma.IntFieldUpdateOperationsInput | number
   chapter?: Prisma.ChapterUpdateOneRequiredWithoutLessonsNestedInput
   userProgress?: Prisma.UserProgressUpdateManyWithoutLessonNestedInput
+  quiz?: Prisma.QuizUpdateOneWithoutLessonNestedInput
 }
 
 export type LessonUncheckedUpdateInput = {
@@ -318,6 +324,7 @@ export type LessonUncheckedUpdateInput = {
   orderIndex?: Prisma.IntFieldUpdateOperationsInput | number
   chapterId?: Prisma.StringFieldUpdateOperationsInput | string
   userProgress?: Prisma.UserProgressUncheckedUpdateManyWithoutLessonNestedInput
+  quiz?: Prisma.QuizUncheckedUpdateOneWithoutLessonNestedInput
 }
 
 export type LessonCreateManyInput = {
@@ -458,6 +465,20 @@ export type LessonUpdateOneRequiredWithoutUserProgressNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.LessonUpdateToOneWithWhereWithoutUserProgressInput, Prisma.LessonUpdateWithoutUserProgressInput>, Prisma.LessonUncheckedUpdateWithoutUserProgressInput>
 }
 
+export type LessonCreateNestedOneWithoutQuizInput = {
+  create?: Prisma.XOR<Prisma.LessonCreateWithoutQuizInput, Prisma.LessonUncheckedCreateWithoutQuizInput>
+  connectOrCreate?: Prisma.LessonCreateOrConnectWithoutQuizInput
+  connect?: Prisma.LessonWhereUniqueInput
+}
+
+export type LessonUpdateOneRequiredWithoutQuizNestedInput = {
+  create?: Prisma.XOR<Prisma.LessonCreateWithoutQuizInput, Prisma.LessonUncheckedCreateWithoutQuizInput>
+  connectOrCreate?: Prisma.LessonCreateOrConnectWithoutQuizInput
+  upsert?: Prisma.LessonUpsertWithoutQuizInput
+  connect?: Prisma.LessonWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.LessonUpdateToOneWithWhereWithoutQuizInput, Prisma.LessonUpdateWithoutQuizInput>, Prisma.LessonUncheckedUpdateWithoutQuizInput>
+}
+
 export type LessonCreateWithoutChapterInput = {
   id?: string
   title: string
@@ -465,6 +486,7 @@ export type LessonCreateWithoutChapterInput = {
   videoUrl?: string | null
   orderIndex: number
   userProgress?: Prisma.UserProgressCreateNestedManyWithoutLessonInput
+  quiz?: Prisma.QuizCreateNestedOneWithoutLessonInput
 }
 
 export type LessonUncheckedCreateWithoutChapterInput = {
@@ -474,6 +496,7 @@ export type LessonUncheckedCreateWithoutChapterInput = {
   videoUrl?: string | null
   orderIndex: number
   userProgress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutLessonInput
+  quiz?: Prisma.QuizUncheckedCreateNestedOneWithoutLessonInput
 }
 
 export type LessonCreateOrConnectWithoutChapterInput = {
@@ -521,6 +544,7 @@ export type LessonCreateWithoutUserProgressInput = {
   videoUrl?: string | null
   orderIndex: number
   chapter: Prisma.ChapterCreateNestedOneWithoutLessonsInput
+  quiz?: Prisma.QuizCreateNestedOneWithoutLessonInput
 }
 
 export type LessonUncheckedCreateWithoutUserProgressInput = {
@@ -530,6 +554,7 @@ export type LessonUncheckedCreateWithoutUserProgressInput = {
   videoUrl?: string | null
   orderIndex: number
   chapterId: string
+  quiz?: Prisma.QuizUncheckedCreateNestedOneWithoutLessonInput
 }
 
 export type LessonCreateOrConnectWithoutUserProgressInput = {
@@ -555,6 +580,7 @@ export type LessonUpdateWithoutUserProgressInput = {
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   orderIndex?: Prisma.IntFieldUpdateOperationsInput | number
   chapter?: Prisma.ChapterUpdateOneRequiredWithoutLessonsNestedInput
+  quiz?: Prisma.QuizUpdateOneWithoutLessonNestedInput
 }
 
 export type LessonUncheckedUpdateWithoutUserProgressInput = {
@@ -564,6 +590,63 @@ export type LessonUncheckedUpdateWithoutUserProgressInput = {
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   orderIndex?: Prisma.IntFieldUpdateOperationsInput | number
   chapterId?: Prisma.StringFieldUpdateOperationsInput | string
+  quiz?: Prisma.QuizUncheckedUpdateOneWithoutLessonNestedInput
+}
+
+export type LessonCreateWithoutQuizInput = {
+  id?: string
+  title: string
+  content: string
+  videoUrl?: string | null
+  orderIndex: number
+  chapter: Prisma.ChapterCreateNestedOneWithoutLessonsInput
+  userProgress?: Prisma.UserProgressCreateNestedManyWithoutLessonInput
+}
+
+export type LessonUncheckedCreateWithoutQuizInput = {
+  id?: string
+  title: string
+  content: string
+  videoUrl?: string | null
+  orderIndex: number
+  chapterId: string
+  userProgress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutLessonInput
+}
+
+export type LessonCreateOrConnectWithoutQuizInput = {
+  where: Prisma.LessonWhereUniqueInput
+  create: Prisma.XOR<Prisma.LessonCreateWithoutQuizInput, Prisma.LessonUncheckedCreateWithoutQuizInput>
+}
+
+export type LessonUpsertWithoutQuizInput = {
+  update: Prisma.XOR<Prisma.LessonUpdateWithoutQuizInput, Prisma.LessonUncheckedUpdateWithoutQuizInput>
+  create: Prisma.XOR<Prisma.LessonCreateWithoutQuizInput, Prisma.LessonUncheckedCreateWithoutQuizInput>
+  where?: Prisma.LessonWhereInput
+}
+
+export type LessonUpdateToOneWithWhereWithoutQuizInput = {
+  where?: Prisma.LessonWhereInput
+  data: Prisma.XOR<Prisma.LessonUpdateWithoutQuizInput, Prisma.LessonUncheckedUpdateWithoutQuizInput>
+}
+
+export type LessonUpdateWithoutQuizInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  orderIndex?: Prisma.IntFieldUpdateOperationsInput | number
+  chapter?: Prisma.ChapterUpdateOneRequiredWithoutLessonsNestedInput
+  userProgress?: Prisma.UserProgressUpdateManyWithoutLessonNestedInput
+}
+
+export type LessonUncheckedUpdateWithoutQuizInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  orderIndex?: Prisma.IntFieldUpdateOperationsInput | number
+  chapterId?: Prisma.StringFieldUpdateOperationsInput | string
+  userProgress?: Prisma.UserProgressUncheckedUpdateManyWithoutLessonNestedInput
 }
 
 export type LessonCreateManyChapterInput = {
@@ -581,6 +664,7 @@ export type LessonUpdateWithoutChapterInput = {
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   orderIndex?: Prisma.IntFieldUpdateOperationsInput | number
   userProgress?: Prisma.UserProgressUpdateManyWithoutLessonNestedInput
+  quiz?: Prisma.QuizUpdateOneWithoutLessonNestedInput
 }
 
 export type LessonUncheckedUpdateWithoutChapterInput = {
@@ -590,6 +674,7 @@ export type LessonUncheckedUpdateWithoutChapterInput = {
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   orderIndex?: Prisma.IntFieldUpdateOperationsInput | number
   userProgress?: Prisma.UserProgressUncheckedUpdateManyWithoutLessonNestedInput
+  quiz?: Prisma.QuizUncheckedUpdateOneWithoutLessonNestedInput
 }
 
 export type LessonUncheckedUpdateManyWithoutChapterInput = {
@@ -640,6 +725,7 @@ export type LessonSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   chapterId?: boolean
   chapter?: boolean | Prisma.ChapterDefaultArgs<ExtArgs>
   userProgress?: boolean | Prisma.Lesson$userProgressArgs<ExtArgs>
+  quiz?: boolean | Prisma.Lesson$quizArgs<ExtArgs>
   _count?: boolean | Prisma.LessonCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["lesson"]>
 
@@ -658,6 +744,7 @@ export type LessonOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type LessonInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   chapter?: boolean | Prisma.ChapterDefaultArgs<ExtArgs>
   userProgress?: boolean | Prisma.Lesson$userProgressArgs<ExtArgs>
+  quiz?: boolean | Prisma.Lesson$quizArgs<ExtArgs>
   _count?: boolean | Prisma.LessonCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -666,6 +753,7 @@ export type $LessonPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   objects: {
     chapter: Prisma.$ChapterPayload<ExtArgs>
     userProgress: Prisma.$UserProgressPayload<ExtArgs>[]
+    quiz: Prisma.$QuizPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1016,6 +1104,7 @@ export interface Prisma__LessonClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   chapter<T extends Prisma.ChapterDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ChapterDefaultArgs<ExtArgs>>): Prisma.Prisma__ChapterClient<runtime.Types.Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   userProgress<T extends Prisma.Lesson$userProgressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lesson$userProgressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quiz<T extends Prisma.Lesson$quizArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Lesson$quizArgs<ExtArgs>>): Prisma.Prisma__QuizClient<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1420,6 +1509,25 @@ export type Lesson$userProgressArgs<ExtArgs extends runtime.Types.Extensions.Int
   take?: number
   skip?: number
   distinct?: Prisma.UserProgressScalarFieldEnum | Prisma.UserProgressScalarFieldEnum[]
+}
+
+/**
+ * Lesson.quiz
+ */
+export type Lesson$quizArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Quiz
+   */
+  select?: Prisma.QuizSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Quiz
+   */
+  omit?: Prisma.QuizOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuizInclude<ExtArgs> | null
+  where?: Prisma.QuizWhereInput
 }
 
 /**

@@ -200,6 +200,8 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   courses?: Prisma.CourseListRelationFilter
   progress?: Prisma.UserProgressListRelationFilter
+  quizResults?: Prisma.QuizResultListRelationFilter
+  submissionEntries?: Prisma.SubmissionEntryListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -212,6 +214,8 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   courses?: Prisma.CourseOrderByRelationAggregateInput
   progress?: Prisma.UserProgressOrderByRelationAggregateInput
+  quizResults?: Prisma.QuizResultOrderByRelationAggregateInput
+  submissionEntries?: Prisma.SubmissionEntryOrderByRelationAggregateInput
   _relevance?: Prisma.UserOrderByRelevanceInput
 }
 
@@ -228,6 +232,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   courses?: Prisma.CourseListRelationFilter
   progress?: Prisma.UserProgressListRelationFilter
+  quizResults?: Prisma.QuizResultListRelationFilter
+  submissionEntries?: Prisma.SubmissionEntryListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -266,6 +272,8 @@ export type UserCreateInput = {
   updatedAt?: Date | string
   courses?: Prisma.CourseCreateNestedManyWithoutInstructorInput
   progress?: Prisma.UserProgressCreateNestedManyWithoutUserInput
+  quizResults?: Prisma.QuizResultCreateNestedManyWithoutUserInput
+  submissionEntries?: Prisma.SubmissionEntryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -278,6 +286,8 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutInstructorInput
   progress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutUserInput
+  quizResults?: Prisma.QuizResultUncheckedCreateNestedManyWithoutUserInput
+  submissionEntries?: Prisma.SubmissionEntryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -290,6 +300,8 @@ export type UserUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courses?: Prisma.CourseUpdateManyWithoutInstructorNestedInput
   progress?: Prisma.UserProgressUpdateManyWithoutUserNestedInput
+  quizResults?: Prisma.QuizResultUpdateManyWithoutUserNestedInput
+  submissionEntries?: Prisma.SubmissionEntryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -302,6 +314,8 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courses?: Prisma.CourseUncheckedUpdateManyWithoutInstructorNestedInput
   progress?: Prisma.UserProgressUncheckedUpdateManyWithoutUserNestedInput
+  quizResults?: Prisma.QuizResultUncheckedUpdateManyWithoutUserNestedInput
+  submissionEntries?: Prisma.SubmissionEntryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -415,6 +429,34 @@ export type UserUpdateOneRequiredWithoutProgressNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProgressInput, Prisma.UserUpdateWithoutProgressInput>, Prisma.UserUncheckedUpdateWithoutProgressInput>
 }
 
+export type UserCreateNestedOneWithoutQuizResultsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQuizResultsInput, Prisma.UserUncheckedCreateWithoutQuizResultsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQuizResultsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutQuizResultsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutQuizResultsInput, Prisma.UserUncheckedCreateWithoutQuizResultsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutQuizResultsInput
+  upsert?: Prisma.UserUpsertWithoutQuizResultsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutQuizResultsInput, Prisma.UserUpdateWithoutQuizResultsInput>, Prisma.UserUncheckedUpdateWithoutQuizResultsInput>
+}
+
+export type UserCreateNestedOneWithoutSubmissionEntriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubmissionEntriesInput, Prisma.UserUncheckedCreateWithoutSubmissionEntriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubmissionEntriesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSubmissionEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubmissionEntriesInput, Prisma.UserUncheckedCreateWithoutSubmissionEntriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubmissionEntriesInput
+  upsert?: Prisma.UserUpsertWithoutSubmissionEntriesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubmissionEntriesInput, Prisma.UserUpdateWithoutSubmissionEntriesInput>, Prisma.UserUncheckedUpdateWithoutSubmissionEntriesInput>
+}
+
 export type UserCreateWithoutCoursesInput = {
   id?: string
   name: string
@@ -424,6 +466,8 @@ export type UserCreateWithoutCoursesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   progress?: Prisma.UserProgressCreateNestedManyWithoutUserInput
+  quizResults?: Prisma.QuizResultCreateNestedManyWithoutUserInput
+  submissionEntries?: Prisma.SubmissionEntryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCoursesInput = {
@@ -435,6 +479,8 @@ export type UserUncheckedCreateWithoutCoursesInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   progress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutUserInput
+  quizResults?: Prisma.QuizResultUncheckedCreateNestedManyWithoutUserInput
+  submissionEntries?: Prisma.SubmissionEntryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCoursesInput = {
@@ -462,6 +508,8 @@ export type UserUpdateWithoutCoursesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserProgressUpdateManyWithoutUserNestedInput
+  quizResults?: Prisma.QuizResultUpdateManyWithoutUserNestedInput
+  submissionEntries?: Prisma.SubmissionEntryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCoursesInput = {
@@ -473,6 +521,8 @@ export type UserUncheckedUpdateWithoutCoursesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   progress?: Prisma.UserProgressUncheckedUpdateManyWithoutUserNestedInput
+  quizResults?: Prisma.QuizResultUncheckedUpdateManyWithoutUserNestedInput
+  submissionEntries?: Prisma.SubmissionEntryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProgressInput = {
@@ -484,6 +534,8 @@ export type UserCreateWithoutProgressInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   courses?: Prisma.CourseCreateNestedManyWithoutInstructorInput
+  quizResults?: Prisma.QuizResultCreateNestedManyWithoutUserInput
+  submissionEntries?: Prisma.SubmissionEntryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProgressInput = {
@@ -495,6 +547,8 @@ export type UserUncheckedCreateWithoutProgressInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   courses?: Prisma.CourseUncheckedCreateNestedManyWithoutInstructorInput
+  quizResults?: Prisma.QuizResultUncheckedCreateNestedManyWithoutUserInput
+  submissionEntries?: Prisma.SubmissionEntryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProgressInput = {
@@ -522,6 +576,8 @@ export type UserUpdateWithoutProgressInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courses?: Prisma.CourseUpdateManyWithoutInstructorNestedInput
+  quizResults?: Prisma.QuizResultUpdateManyWithoutUserNestedInput
+  submissionEntries?: Prisma.SubmissionEntryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProgressInput = {
@@ -533,6 +589,144 @@ export type UserUncheckedUpdateWithoutProgressInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   courses?: Prisma.CourseUncheckedUpdateManyWithoutInstructorNestedInput
+  quizResults?: Prisma.QuizResultUncheckedUpdateManyWithoutUserNestedInput
+  submissionEntries?: Prisma.SubmissionEntryUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutQuizResultsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  courses?: Prisma.CourseCreateNestedManyWithoutInstructorInput
+  progress?: Prisma.UserProgressCreateNestedManyWithoutUserInput
+  submissionEntries?: Prisma.SubmissionEntryCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutQuizResultsInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  courses?: Prisma.CourseUncheckedCreateNestedManyWithoutInstructorInput
+  progress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutUserInput
+  submissionEntries?: Prisma.SubmissionEntryUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutQuizResultsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutQuizResultsInput, Prisma.UserUncheckedCreateWithoutQuizResultsInput>
+}
+
+export type UserUpsertWithoutQuizResultsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutQuizResultsInput, Prisma.UserUncheckedUpdateWithoutQuizResultsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutQuizResultsInput, Prisma.UserUncheckedCreateWithoutQuizResultsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutQuizResultsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutQuizResultsInput, Prisma.UserUncheckedUpdateWithoutQuizResultsInput>
+}
+
+export type UserUpdateWithoutQuizResultsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  courses?: Prisma.CourseUpdateManyWithoutInstructorNestedInput
+  progress?: Prisma.UserProgressUpdateManyWithoutUserNestedInput
+  submissionEntries?: Prisma.SubmissionEntryUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutQuizResultsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  courses?: Prisma.CourseUncheckedUpdateManyWithoutInstructorNestedInput
+  progress?: Prisma.UserProgressUncheckedUpdateManyWithoutUserNestedInput
+  submissionEntries?: Prisma.SubmissionEntryUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSubmissionEntriesInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  courses?: Prisma.CourseCreateNestedManyWithoutInstructorInput
+  progress?: Prisma.UserProgressCreateNestedManyWithoutUserInput
+  quizResults?: Prisma.QuizResultCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutSubmissionEntriesInput = {
+  id?: string
+  name: string
+  email: string
+  password: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  courses?: Prisma.CourseUncheckedCreateNestedManyWithoutInstructorInput
+  progress?: Prisma.UserProgressUncheckedCreateNestedManyWithoutUserInput
+  quizResults?: Prisma.QuizResultUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutSubmissionEntriesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubmissionEntriesInput, Prisma.UserUncheckedCreateWithoutSubmissionEntriesInput>
+}
+
+export type UserUpsertWithoutSubmissionEntriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSubmissionEntriesInput, Prisma.UserUncheckedUpdateWithoutSubmissionEntriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubmissionEntriesInput, Prisma.UserUncheckedCreateWithoutSubmissionEntriesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSubmissionEntriesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSubmissionEntriesInput, Prisma.UserUncheckedUpdateWithoutSubmissionEntriesInput>
+}
+
+export type UserUpdateWithoutSubmissionEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  courses?: Prisma.CourseUpdateManyWithoutInstructorNestedInput
+  progress?: Prisma.UserProgressUpdateManyWithoutUserNestedInput
+  quizResults?: Prisma.QuizResultUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSubmissionEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  courses?: Prisma.CourseUncheckedUpdateManyWithoutInstructorNestedInput
+  progress?: Prisma.UserProgressUncheckedUpdateManyWithoutUserNestedInput
+  quizResults?: Prisma.QuizResultUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -543,11 +737,15 @@ export type UserUncheckedUpdateWithoutProgressInput = {
 export type UserCountOutputType = {
   courses: number
   progress: number
+  quizResults: number
+  submissionEntries: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   courses?: boolean | UserCountOutputTypeCountCoursesArgs
   progress?: boolean | UserCountOutputTypeCountProgressArgs
+  quizResults?: boolean | UserCountOutputTypeCountQuizResultsArgs
+  submissionEntries?: boolean | UserCountOutputTypeCountSubmissionEntriesArgs
 }
 
 /**
@@ -574,6 +772,20 @@ export type UserCountOutputTypeCountProgressArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.UserProgressWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountQuizResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.QuizResultWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSubmissionEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubmissionEntryWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -585,6 +797,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   courses?: boolean | Prisma.User$coursesArgs<ExtArgs>
   progress?: boolean | Prisma.User$progressArgs<ExtArgs>
+  quizResults?: boolean | Prisma.User$quizResultsArgs<ExtArgs>
+  submissionEntries?: boolean | Prisma.User$submissionEntriesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -604,6 +818,8 @@ export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   courses?: boolean | Prisma.User$coursesArgs<ExtArgs>
   progress?: boolean | Prisma.User$progressArgs<ExtArgs>
+  quizResults?: boolean | Prisma.User$quizResultsArgs<ExtArgs>
+  submissionEntries?: boolean | Prisma.User$submissionEntriesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -612,6 +828,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     courses: Prisma.$CoursePayload<ExtArgs>[]
     progress: Prisma.$UserProgressPayload<ExtArgs>[]
+    quizResults: Prisma.$QuizResultPayload<ExtArgs>[]
+    submissionEntries: Prisma.$SubmissionEntryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -963,6 +1181,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   courses<T extends Prisma.User$coursesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$coursesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CoursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   progress<T extends Prisma.User$progressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$progressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  quizResults<T extends Prisma.User$quizResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$quizResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  submissionEntries<T extends Prisma.User$submissionEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$submissionEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubmissionEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1392,6 +1612,54 @@ export type User$progressArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.UserProgressScalarFieldEnum | Prisma.UserProgressScalarFieldEnum[]
+}
+
+/**
+ * User.quizResults
+ */
+export type User$quizResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the QuizResult
+   */
+  select?: Prisma.QuizResultSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the QuizResult
+   */
+  omit?: Prisma.QuizResultOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.QuizResultInclude<ExtArgs> | null
+  where?: Prisma.QuizResultWhereInput
+  orderBy?: Prisma.QuizResultOrderByWithRelationInput | Prisma.QuizResultOrderByWithRelationInput[]
+  cursor?: Prisma.QuizResultWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.QuizResultScalarFieldEnum | Prisma.QuizResultScalarFieldEnum[]
+}
+
+/**
+ * User.submissionEntries
+ */
+export type User$submissionEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SubmissionEntry
+   */
+  select?: Prisma.SubmissionEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SubmissionEntry
+   */
+  omit?: Prisma.SubmissionEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubmissionEntryInclude<ExtArgs> | null
+  where?: Prisma.SubmissionEntryWhereInput
+  orderBy?: Prisma.SubmissionEntryOrderByWithRelationInput | Prisma.SubmissionEntryOrderByWithRelationInput[]
+  cursor?: Prisma.SubmissionEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubmissionEntryScalarFieldEnum | Prisma.SubmissionEntryScalarFieldEnum[]
 }
 
 /**

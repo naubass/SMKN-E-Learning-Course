@@ -8,15 +8,17 @@ generator client {
 }
 
 model User {
-  id           String         @id @default(uuid())
-  name         String
-  email        String         @unique
-  password     String
-  role         Role           @default(STUDENT)
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
-  courses      Course[]       @relation("InstructorCourses")
-  progress     UserProgress[]
+  id                String            @id @default(uuid())
+  name              String
+  email             String            @unique
+  password          String
+  role              Role              @default(STUDENT)
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  courses           Course[]          @relation("InstructorCourses")
+  progress          UserProgress[]
+  quizResults       QuizResult[]
+  submissionEntries SubmissionEntry[]
 }
 
 enum Role {
@@ -28,12 +30,14 @@ enum Role {
 model Course {
   id           String      @id @default(uuid())
   title        String
-  description  String
+  bio          String?     // Tagline singkat, tampil di header course (beda dari description lengkap)
+  description  String      @db.Text
   category     String
   thumbnail    String?
   instructorId String
   instructor   User        @relation("InstructorCourses", fields: [instructorId], references: [id], onDelete: Cascade)
   chapters     Chapter[]
+  submission   Submission?
   createdAt    DateTime    @default(now())
   updatedAt    DateTime    @updatedAt
 }
@@ -56,6 +60,7 @@ model Lesson {
   chapterId    String
   chapter      Chapter        @relation(fields: [chapterId], references: [id], onDelete: Cascade)
   userProgress UserProgress[]
+  quiz         Quiz?
 }
 
 model UserProgress {
@@ -68,4 +73,80 @@ model UserProgress {
   updatedAt   DateTime @updatedAt
 
   @@unique([userId, lessonId])
+}
+
+
+model Quiz {
+  id        String         @id @default(uuid())
+  lessonId  String         @unique // 1 lesson maksimal 1 quiz
+  lesson    Lesson         @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  title     String
+  questions QuizQuestion[]
+  results   QuizResult[]
+  createdAt DateTime       @default(now())
+}
+
+model QuizQuestion {
+  id            String     @id @default(uuid())
+  quizId        String
+  quiz          Quiz       @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  question      String     @db.Text
+  optionA       String
+  optionB       String
+  optionC       String
+  optionD       String
+  correctAnswer QuizOption
+  orderIndex    Int
+}
+
+enum QuizOption {
+  A
+  B
+  C
+  D
+}
+
+model QuizResult {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quizId      String
+  quiz        Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  score       Int      // persentase 0-100
+  isPassed    Boolean  @default(false)
+  completedAt DateTime @default(now())
+
+  @@unique([userId, quizId])
+}
+
+
+model Submission {
+  id           String            @id @default(uuid())
+  courseId     String            @unique // 1 course maksimal 1 submission akhir
+  course       Course            @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  title        String
+  instructions String            @db.Text
+  entries      SubmissionEntry[]
+  createdAt    DateTime          @default(now())
+}
+
+model SubmissionEntry {
+  id           String           @id @default(uuid())
+  submissionId String
+  submission   Submission       @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+  userId       String
+  user         User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content      String           @db.Text // link/deskripsi hasil tugas siswa (misal link GitHub, Drive)
+  status       SubmissionStatus @default(PENDING)
+  feedback     String?          @db.Text
+  submittedAt  DateTime         @default(now())
+  reviewedAt   DateTime?
+
+  @@unique([submissionId, userId])
+}
+
+enum SubmissionStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
 }

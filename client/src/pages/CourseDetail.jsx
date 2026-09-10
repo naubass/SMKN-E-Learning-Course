@@ -103,7 +103,7 @@ function CourseDetail() {
                 {course.title}
               </h1>
               <p className="mt-3 text-base text-slate-300 leading-relaxed line-clamp-2">
-                {course.description}
+                {course.bio}
               </p>
 
               <div className="mt-6 flex flex-wrap items-center gap-6 text-sm text-slate-300">

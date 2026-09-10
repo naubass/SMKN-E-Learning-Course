@@ -65,7 +65,7 @@ export const getCourseById = async (req, res) => {
 // CREATE course baru (instructor only)
 export const createCourse = async (req, res) => {
     try {
-        const { title, description, category, thumbnail } = req.body;
+        const { title, bio, description, category, thumbnail } = req.body;
 
         if (!title || !description || !category) {
             return res.status(400).json({ message: 'Title, description, dan category wajib diisi' });
@@ -74,6 +74,7 @@ export const createCourse = async (req, res) => {
         const course = await prisma.course.create({
             data: {
                 title,
+                bio: bio || null,
                 description,
                 category,
                 thumbnail: thumbnail || null,
@@ -92,7 +93,7 @@ export const createCourse = async (req, res) => {
 export const updateCourse = async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, description, category, thumbnail } = req.body;
+        const { title, bio, description, category, thumbnail } = req.body;
 
         const existingCourse = await prisma.course.findUnique({ where: { id } });
         if (!existingCourse) {
@@ -108,6 +109,7 @@ export const updateCourse = async (req, res) => {
             where: { id },
             data: {
                 title: title ?? existingCourse.title,
+                bio: bio != undefined ? bio : existingCourse.bio,
                 description: description ?? existingCourse.description,
                 category: category ?? existingCourse.category,
                 thumbnail: thumbnail ?? existingCourse.thumbnail,

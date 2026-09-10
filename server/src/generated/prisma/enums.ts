@@ -16,3 +16,22 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const QuizOption = {
+  A: 'A',
+  B: 'B',
+  C: 'C',
+  D: 'D'
+} as const
+
+export type QuizOption = (typeof QuizOption)[keyof typeof QuizOption]
+
+
+export const SubmissionStatus = {
+  PENDING: 'PENDING',
+  ACCEPTED: 'ACCEPTED',
+  REJECTED: 'REJECTED'
+} as const
+
+export type SubmissionStatus = (typeof SubmissionStatus)[keyof typeof SubmissionStatus]

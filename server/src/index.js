@@ -9,6 +9,9 @@ import chapter from './routes/chapter.js';
 import uploadRoutes from './routes/upload.js';
 import lessonRoutes from './routes/lesson.js';
 import progressRoutes from './routes/progress.js';
+import quizRoutes from './routes/quiz.js';
+import submissionRoutes from './routes/submission.js';
+import userRoutes from './routes/user.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,6 +27,9 @@ app.use('/api', chapter);
 app.use('/api/upload', uploadRoutes);
 app.use('/api', lessonRoutes);
 app.use('/api', progressRoutes);
+app.use('/api', quizRoutes);
+app.use('/api', submissionRoutes)
+app.use('/api/users', userRoutes)
 
 // Serve folder uploads supaya gambar bisa diakses lewat URL
 app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')))
