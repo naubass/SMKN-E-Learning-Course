@@ -15,9 +15,9 @@ import {
 } from 'lucide-react';
 
 const linkBase =
-  'flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-medium transition';
-const linkActive = 'bg-blue-50 text-blue-600 font-semibold';
-const linkInactive = 'text-slate-600 hover:bg-slate-50 hover:text-slate-900';
+  'flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-medium transition-all duration-200';
+const linkActive = 'bg-blue-50 text-blue-600 font-bold'; // Gunakan font-bold yang solid
+const linkInactive = 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-normal';
 
 function DashboardSidebar({ role }) {
   const [collapsed, setCollapsed] = useState(false);
@@ -85,15 +85,16 @@ function DashboardSidebar({ role }) {
           <div className="space-y-1">
             {(isInstructor || isAdmin) ? (
               <>
-                <NavLink to="/dashboard/courses" className={linkClass} title="Course Saya" onClick={closeMobile}>
+                {/* Ganti baris ini */}
+                <NavLink to="/dashboard/courses" end className={linkClass} title="Course Saya" onClick={closeMobile}>
                   <BookOpen className="w-5 h-5 shrink-0" />
                   <span className={collapsed ? 'lg:hidden' : ''}>Course Saya</span>
                 </NavLink>
 
-                <NavLink to="/dashboard/courses/new" className={linkClass} title="Buat Course" onClick={closeMobile}>
+                {/* <NavLink to="/dashboard/courses/new" className={linkClass} title="Buat Course" onClick={closeMobile}>
                   <PlusCircle className="w-5 h-5 shrink-0" />
                   <span className={collapsed ? 'lg:hidden' : ''}>Buat Course</span>
-                </NavLink>
+                </NavLink> */}
               </>
             ) : (
               <>

@@ -10,10 +10,13 @@ import { verifyToken, requireRole } from '../middlewares/verifyToken.js';
 
 const router = express.Router();
 
-router.get('/', verifyToken, requireRole('ADMIN'), getAllUsers);
-router.post('/', verifyToken, requireRole('ADMIN'), createUser);
-router.put('/:id', verifyToken, requireRole('ADMIN'), updateUser);
-router.delete('/:id', verifyToken, requireRole('ADMIN'), deleteUser);
-router.get('/:id', verifyToken, getUserById);
+// Semua route di sini wajib login DAN role ADMIN
+router.use(verifyToken, requireRole('ADMIN'));
+
+router.get('/', getAllUsers);
+router.get('/:id', getUserById);
+router.post('/', createUser);
+router.put('/:id', updateUser);
+router.delete('/:id', deleteUser);
 
 export default router;
