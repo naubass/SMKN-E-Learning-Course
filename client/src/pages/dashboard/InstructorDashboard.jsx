@@ -4,8 +4,8 @@ import WelcomeBanner from '../../components/dashboard/WelcomeBanner';
 import CourseCard from '../../components/dashboard/CourseCard';
 import CourseListSkeleton from '../../components/dashboard/CourseListSkeleton';
 import EmptyState from '../../components/dashboard/EmptyState';
-import FreeAccessWidget from '../../components/dashboard/widgets/FreeAccessWidget';
-import DailyCheckInWidget from '../../components/dashboard/widgets/DailyCheckInWidget';
+import CourseProgressOverviewWidget from '../../components/dashboard/widgets/CourseProgressOverviewWidget';
+import TopStudentsWidget from '../../components/dashboard/widgets/TopStudentsWidget';
 
 function InstructorDashboard({ user }) {
   const { courses, loading } = useCourses();
@@ -26,7 +26,7 @@ function InstructorDashboard({ user }) {
             <div className="flex items-center justify-between">
               <h2 className="text-lg font-bold text-gray-900">Course Saya</h2>
               <Link
-                to="/dashboard/courses/new"
+                to="/dashboard/courses"
                 className="rounded-xl bg-blue-600 px-4 py-2 text-xs font-semibold text-white shadow-sm hover:bg-blue-700 transition"
               >
                 + Buat Course
@@ -48,9 +48,10 @@ function InstructorDashboard({ user }) {
             )}
           </div>
 
+          {/* Widget khusus instructor: progress siswa, bukan widget generic student */}
           <div className="space-y-6">
-            <FreeAccessWidget />
-            <DailyCheckInWidget />
+            {!loading && <CourseProgressOverviewWidget courses={myCourses} />}
+            {!loading && <TopStudentsWidget courses={myCourses} />}
           </div>
         </div>
       </div>

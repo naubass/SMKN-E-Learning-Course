@@ -99,3 +99,61 @@ export const getMyProgressForCourse = async (req, res) => {
         res.status(500).json({ message: 'Terjadi kesalahan server' });
     }
 };
+
+export const getCourseStudentsProgress = async (req, res) => {
+    try {
+        const { courseId } = req.params;
+
+        const course = await prisma.course.findUnique({ where: { id: courseId } });
+
+        // Kondisi course tidak ditemukan
+        if (!course) {
+            return res.status(404).json({ message: 'Course tidak ditemukan' });
+        }
+
+        // Kondisi user bukan instructor
+        if (req.user.role !== 'ADMIN' && course.instructorId !== req.user.id) {
+            return res.status(403).json({ message: 'Kamu tidak punya akses ke course ini' });
+        }
+
+        const totalLessons = await prisma.lesson.count({
+            where: { chapter: { courseId } },
+        });
+
+        const progressRecords = await prisma.userProgress.findMany({
+            where: { lesson: { chapter: { courseId } } },
+            include: { user: { select: { id: true, name: true, email: true } } },
+        });
+
+        const progressByUser = {};
+        progressRecords.forEach((record) => {
+            if (!progressByUser[record.userId]) {
+                progressByUser[record.userId] = { user: record.user, completedLessons: 0 };
+            }
+            if (record.isCompleted) {
+                progressByUser[record.userId].completedLessons += 1;
+            }
+        });
+
+        const students = Object.values(progressByUser)
+            .map(({ user, completedLessons }) => ({
+                id: user.id,
+                name: user.name,
+                email: user.email,
+                completedLessons,
+                totalLessons,
+                percentage: totalLessons === 0 ? 0 : Math.round((completedLessons / totalLessons) * 100),
+            }))
+            .sort((a, b) => b.percentage - a.percentage); // urutkan dari progress tertinggi
+ 
+        return res.status(200).json({
+            courseId,
+            totalLessons,
+            totalStudents: students.length,
+            students,
+        });
+    } catch (error) {
+        console.error('Get course progress error:', error);
+        res.status(500).json({ message: 'Terjadi kesalahan server' });
+    }
+};
