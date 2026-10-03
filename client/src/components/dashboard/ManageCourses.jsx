@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { ImagePlus, Loader2, Pencil, Trash2, Plus, X, Search, Filter, BookOpen, Layers } from 'lucide-react';
+import { ImagePlus, Loader2, Pencil, Trash2, Plus, X, Search, Filter, BookOpen, Layers, ListOrdered } from 'lucide-react';
 import { useAuth } from '../../store/AuthContext';
 import api from '../../utils/api';
 
@@ -522,6 +522,14 @@ function ManageCourses() {
                           )}
                           <td className="px-6 py-4 text-right">
                             <div className="flex items-center justify-end gap-2">
+                              {/* TAMBAHAN: tombol ke halaman Manage Chapters, pakai course.id asli */}
+                              <Link
+                                to={`/dashboard/courses/${course.id}/chapters`}
+                                className="rounded-xl border border-gray-200 bg-white p-2 text-gray-600 hover:bg-emerald-50 hover:border-emerald-200 hover:text-emerald-600 shadow-sm transition"
+                                title="Kelola bab & materi"
+                              >
+                                <ListOrdered className="size-4" />
+                              </Link>
                               <button
                                 onClick={() => handleEdit(course)}
                                 className="rounded-xl border border-gray-200 bg-white p-2 text-gray-600 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-600 shadow-sm transition"

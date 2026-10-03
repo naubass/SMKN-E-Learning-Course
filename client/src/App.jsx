@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import ManageCourses from './components/dashboard/ManageCourses';
 import ManageUsers from './components/dashboard/ManageUsers';
+import ManageChapters from './components/dashboard/ManageChapters';
 import Courses from './pages/Courses';
 import CourseDetail from './pages/CourseDetail';
 import LessonPage from './pages/LessonPage';
@@ -55,6 +56,16 @@ function App() {
             element={
               <StaffRoute>
                 <ManageCourses />
+              </StaffRoute>
+            }
+          />
+
+          {/* Kelola chapter untuk 1 course tertentu */}
+          <Route
+            path="/dashboard/courses/:courseId/chapters"
+            element={
+              <StaffRoute>
+                <ManageChapters />
               </StaffRoute>
             }
           />

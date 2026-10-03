@@ -4,7 +4,6 @@ import {
   Home,
   BookOpen,
   BarChart3,
-  PlusCircle,
   Users,
   Compass,
   Award,
@@ -16,7 +15,7 @@ import {
 
 const linkBase =
   'flex items-center gap-3 rounded-xl px-3.5 py-3 text-sm font-medium transition-all duration-200';
-const linkActive = 'bg-blue-50 text-blue-600 font-bold'; // Gunakan font-bold yang solid
+const linkActive = 'bg-blue-50 text-blue-600 font-bold';
 const linkInactive = 'text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-normal';
 
 function DashboardSidebar({ role }) {
@@ -42,7 +41,7 @@ function DashboardSidebar({ role }) {
             Menu Utama
           </span>
         )}
-        
+
         <button
           type="button"
           onClick={() => setCollapsed((prev) => !prev)}
@@ -85,16 +84,14 @@ function DashboardSidebar({ role }) {
           <div className="space-y-1">
             {(isInstructor || isAdmin) ? (
               <>
-                {/* Ganti baris ini */}
+                {/* Buat Chapter" dan "Buat Materi" DIHAPUS dari sini.
+                    Keduanya butuh courseId/chapterId spesifik, jadi tidak bisa
+                    jadi link generik di sidebar. Akses dari tombol di tabel
+                    "Course Saya" (ManageCourses) untuk course yang dipilih. */}
                 <NavLink to="/dashboard/courses" end className={linkClass} title="Course Saya" onClick={closeMobile}>
                   <BookOpen className="w-5 h-5 shrink-0" />
                   <span className={collapsed ? 'lg:hidden' : ''}>Course Saya</span>
                 </NavLink>
-
-                {/* <NavLink to="/dashboard/courses/new" className={linkClass} title="Buat Course" onClick={closeMobile}>
-                  <PlusCircle className="w-5 h-5 shrink-0" />
-                  <span className={collapsed ? 'lg:hidden' : ''}>Buat Course</span>
-                </NavLink> */}
               </>
             ) : (
               <>
@@ -130,7 +127,6 @@ function DashboardSidebar({ role }) {
 
   return (
     <>
-      {/* Tombol Floating Menu Mobile (Dipindah ke Kiri Bawah & Warna Mencolok agar pasti terlihat) */}
       <button
         type="button"
         onClick={() => setMobileOpen(true)}
@@ -140,7 +136,6 @@ function DashboardSidebar({ role }) {
         <Menu className="w-7 h-7" />
       </button>
 
-      {/* Mobile Backdrop */}
       {mobileOpen && (
         <div
           className="fixed inset-0 z-[99998] bg-black/60 backdrop-blur-sm lg:hidden transition-opacity"
@@ -148,7 +143,6 @@ function DashboardSidebar({ role }) {
         />
       )}
 
-      {/* Mobile Drawer */}
       <aside
         className={`fixed inset-y-0 left-0 z-[99999] w-72 max-w-[80vw] bg-white px-4 py-6 shadow-2xl overflow-y-auto transition-transform duration-300 ease-in-out lg:hidden ${
           mobileOpen ? 'translate-x-0' : '-translate-x-full'
@@ -157,7 +151,6 @@ function DashboardSidebar({ role }) {
         {SidebarContent}
       </aside>
 
-      {/* Desktop Sidebar */}
       <aside
         className={`hidden shrink-0 border-r border-gray-200 bg-white py-6 lg:block sticky top-[73px] h-[calc(100vh-73px)] overflow-y-auto transition-all duration-300 ${
           collapsed ? 'w-20 px-2' : 'w-64 px-4'
